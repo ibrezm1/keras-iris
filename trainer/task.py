@@ -39,11 +39,11 @@ def train_and_evaluate(args):
     iris_model.fit(X_train, y_train, verbose=1, batch_size=5, epochs=50)
 
     # Save model.h5 on to google storage
-    iris_model.save('model.h5')
-    with file_io.FileIO('model.h5', mode='rb') as input_f:
-        with file_io.FileIO(args.job_dir  + '/model.h5', mode='w+') as output_f:
-            output_f.write(input_f.read())
-
+    #iris_model.save('model.pb')
+    #with file_io.FileIO('model.pb', mode='rb') as input_f:
+    #    with file_io.FileIO(args.job_dir  + '/model.pb', mode='w+') as output_f:
+    #        output_f.write(input_f.read())
+    iris_model.save(os.path.join(args.job_dir, 'export'))
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
